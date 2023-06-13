@@ -11,10 +11,10 @@ public class Editorial {
     @Column(name = "editorial_id")
     private Integer id;
 
-    @Column(name = "nombre", unique = true, length = 30)
+    @Column(name = "nombre", unique = true, length = 30, nullable = false)
     private String nombre;
 
-    @Column(name = "descripcion", length = 300)
+    @Column(name = "descripcion", length = 300, nullable = false)
     private String descripcion;
 
     @Transient

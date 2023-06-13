@@ -1,4 +1,6 @@
-package com.pragma.library.servicio;
+package com.pragma.library.Controlador.servicio;
+
+import com.pragma.library.entidad.Editorial;
 
 import java.util.List;
 

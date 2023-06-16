@@ -14,16 +14,16 @@ public class PaisAutor {
 
     @ManyToOne
     @JoinColumn(name = "id_pais")
-    private List<Pais> pais;
+    private Pais pais;
 
     @ManyToOne
     @JoinColumn(name = "id_autor")
-    private List<Autor> autor;
+    private Autor autor;
 
     public PaisAutor() {
     }
 
-    public PaisAutor(Integer id, List pais, List autor) {
+    public PaisAutor(Integer id, Pais pais, Autor autor) {
         this.id = id;
         this.pais = pais;
         this.autor = autor;
@@ -37,19 +37,19 @@ public class PaisAutor {
         this.id = id;
     }
 
-    public List getPais() {
+    public Pais getPais() {
         return pais;
     }
 
-    public void setPais(List pais) {
+    public void setPais(Pais pais) {
         this.pais = pais;
     }
 
-    public List getAutor() {
+    public Autor getAutor() {
         return autor;
     }
 
-    public void setAutor(List autor) {
+    public void setAutor(Autor autor) {
         this.autor = autor;
     }
 }

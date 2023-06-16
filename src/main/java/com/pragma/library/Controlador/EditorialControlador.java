@@ -1,7 +1,7 @@
 package com.pragma.library.Controlador;
 
 import com.pragma.library.entidad.Editorial;
-import com.pragma.library.Controlador.servicio.EditorialServicio;
+import com.pragma.library.servicio.EditorialServicio;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/editoriales")
@@ -24,7 +25,7 @@ public class EditorialControlador {
     @PostMapping
     @Operation(summary = "Registra una editorial en la BD")
     @ApiResponses(value={
-            @ApiResponse(responseCode = "201", description = "Estudiante creado con exito"),
+            @ApiResponse(responseCode = "201", description = "Editorial creado con exito"),
             @ApiResponse(responseCode = "400", description = "Error en el registro")
     })
     public ResponseEntity<Editorial> registrar (@RequestBody Editorial datos){
@@ -34,7 +35,7 @@ public class EditorialControlador {
                     .status(HttpStatus.CREATED)
                     .body(editorialRegistrada);
         }catch (Exception error){
-            String mensaje = "Erro al registrar la editorial" + error.getMessage();
+            String mensaje = "Error al registrar la editorial" + error.getMessage();
             Editorial editorialError = new Editorial();
             editorialError.setMensajeError(mensaje);
             return ResponseEntity
@@ -44,6 +45,11 @@ public class EditorialControlador {
     }
 
     @GetMapping
+    @Operation(summary = "Listar editoriales de la BD")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "201", description = "Listados"),
+            @ApiResponse(responseCode = "400", description = "Error")
+    })
     public ResponseEntity <List<Editorial>> buscarTodos(){
         try {
             List<Editorial> editoriales = editorialServicio.buscarTodos();
@@ -58,6 +64,11 @@ public class EditorialControlador {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Listar una editorial de la BD")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "201", description = "Estudiante encontrado"),
+            @ApiResponse(responseCode = "400", description = "Error, estudiante desconocido")
+    })
     public ResponseEntity<Editorial> buscarPorId(@PathVariable Integer id){
         try{
             Editorial editorialEncontrado = editorialServicio.buscarPorId(id);

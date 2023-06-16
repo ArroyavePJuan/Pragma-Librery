@@ -1,4 +1,4 @@
-package com.pragma.library.Controlador.servicio;
+package com.pragma.library.servicio;
 
 import com.pragma.library.entidad.Autor;
 import com.pragma.library.repositorio.AutorRepositorio;
